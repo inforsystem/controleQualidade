@@ -33,7 +33,7 @@ public class Login implements Serializable {
 	@Column(name="senha_login")
 	private String password;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 

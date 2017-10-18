@@ -5,9 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,6 +51,9 @@ public class Usuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_perfil")
 	private Perfil perfil;
+	
+	@OneToOne(mappedBy="usuario", fetch=FetchType.EAGER)
+	private Login login;
 
 	public Long getId() {
 		return id;
@@ -127,6 +132,14 @@ public class Usuario implements Serializable {
 		return "Usuario [id=" + id + ", vigenciaInicial=" + vigenciaInicial + ", vigenciaFinal=" + vigenciaFinal
 				+ ", nome=" + nome + ", email=" + email + ", ativo=" + ativo + ", meta=" + meta + ", equipe=" + equipe
 				+ ", perfil=" + perfil + "]";
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 	
 }

@@ -46,9 +46,6 @@ public class Analise implements Serializable {
 	@Column(name="pedido")
 	private String pedido;
 	
-//	@Column(name="id_usuario_analise")
-//	private Long idUsuarioAnalise; // TODO verificar relacionamento (Marcelo)
-	
 	@Column(name="desc_produto")
 	private String descricaoProduto;
 	
@@ -204,15 +201,14 @@ public class Analise implements Serializable {
 		this.equipe = equipe;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Analise [id=" + id + ", mesReferencia=" + mesReferencia + ", anoReferencia=" + anoReferencia
-//				+ ", dataAnalise=" + dataAnalise + ", motivoCQ=" + motivoCQ + ", requisicaoCompra=" + requisicaoCompra
-//				+ ", pedido=" + pedido + ", idUsuarioAnalise=" + idUsuarioAnalise + ", descricaoProduto="
-//				+ descricaoProduto + ", dataSolicitacao=" + dataSolicitacao + ", localProcesso=" + localProcesso
-//				+ ", numeroDemanda=" + numeroDemanda + ", ativo=" + ativo + ", observacaoAnalise=" + observacaoAnalise
-//				+ ", tipoProcesso=" + tipoProcesso + ", equipe=" + equipe + "]";
-//	}
+	@Override
+	public String toString() {
+		return "Analise [id=" + id + ", mesReferencia=" + mesReferencia + ", anoReferencia=" + anoReferencia
+				+ ", dataAnalise=" + dataAnalise + ", motivoCQ=" + motivoCQ + ", requisicaoCompra=" + requisicaoCompra
+				+ ", pedido=" + pedido + ", descricaoProduto=" + descricaoProduto + ", dataSolicitacao="
+				+ dataSolicitacao + ", localProcesso=" + localProcesso + ", numeroDemanda=" + numeroDemanda + ", ativo="
+				+ ativo + ", observacaoAnalise=" + observacaoAnalise + ", tipoProcesso=" + tipoProcesso + ", equipe="
+				+ equipe + "]";
+	}
 
-	
 }

@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import br.com.portoseguro.controlequaliadde.dto.LoginDTO;
-import br.com.portoseguro.controlequalidade.dao.LoginDAO;
-import br.com.portoseguro.controlequalidade.entity.Login;
+import br.com.portoseguro.controlequalidade.dao.UsuarioDAO;
+import br.com.portoseguro.controlequalidade.entity.Usuario;
 import br.com.portoseguro.controlequalidade.exception.DAOException;
 import br.com.portoseguro.controlequalidade.utils.EncriptUtils;
 
@@ -24,7 +24,7 @@ public class LoginService {
 	private EncriptUtils encriptUtils;
 	
 	@Inject
-	private LoginDAO loginDAO;
+	private UsuarioDAO usuarioDAO;
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -33,19 +33,19 @@ public class LoginService {
 		
 		try {
 			
-			String encode = encriptUtils.encode(loginDTO.getPassword());
-			Login loginBase = loginDAO.buscarPorSenha(encode);
+			Usuario usuarioBase = this.usuarioDAO.findById( Long.parseLong(loginDTO.getUsername()) ) ;
+			String passwordDTOEncode = this.encriptUtils.encode(loginDTO.getPassword());
 			
-			if(loginBase == null) {
-				return Response.serverError().status(Status.NOT_FOUND).build();
+			if(usuarioBase == null) {
+				return Response.status(Status.NOT_FOUND).build();
 			}
 			
-			if(loginBase.getUsuario().getId().toString().equals(loginDTO.getUsername())) {
-				return Response.ok(loginBase).build();
+			if(usuarioBase.getLogin().getPassword().equals(passwordDTOEncode)) {
+				return Response.ok(usuarioBase).build();
 			}
 			
 		} catch (DAOException e) {
-			return Response.serverError().entity(e.getMessage()).build();
+			return Response.serverError().entity( e.getMessage() ).build();
 		}
 		
 		return Response.serverError().build();
