@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="controleQualidade">
+
+	<head>
+		<base href="/app" />
+		
+		<meta charset="ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<title>Index</title>
+		
+		<!-- CSS -->
+		<link rel="stylesheet" href="/controleQualidade/resources/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/controleQualidade/resources/css/general.css">
+		
+	</head>
+	
+	<body>
+		<div class="container">
+		
+			<!-- Menu -->
+			<nav class="navbar navbar-default" ng-show="currentPath !== '/controleQualidade'">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="">Menu</a>
+			    </div>
+			
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			      
+			      	<li class="dropdown" ng-class="{active: currentPath === '/controleQualidade/usuario'}">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			          		Usuário 
+			          		<span class="caret"></span>
+		          		</a>
+						<ul class="dropdown-menu">
+							<li><a href="/controleQualidade/#!/controleQualidade/usuario">Cadastrar</a></li>
+							<li><a href="">Consultar</a></li>
+						</ul>
+			        </li>
+			        
+			       	<li class="dropdown" ng-class="{active: currentPath === '/controleQualidade/analise'}">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			          		Análise 
+			          		<span class="caret"></span>
+		          		</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="/controleQualidade/#!/controleQualidade/analise">Cadastrar</a>
+							</li>
+							<li>
+								<a href="">Consultar</a>
+							</li>
+							<li>
+								<a href="">Envio Mensal</a>
+							</li>
+						</ul>
+			        </li>
+			        
+			        <li ng-class="{active: currentPath === '/controleQualidade/relatorio'}">
+			        	<a href="/controleQualidade/#!/controleQualidade/lista">Relatorio</a>
+			       	</li>
+			       	
+			      </ul>
+			      <ul class="nav navbar-nav navbar-right">
+			        <li ng-controller="menuController">
+			       		<button type="button" class="btn btn-default navbar-btn" ng-click="logout();">
+			       			<span class="glyphicon glyphicon-log-out"></span>
+			       			Logout
+			       		</button>
+			       	</li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+			
+			<!-- Template -->			
+			<ng-view></ng-view>	
+		</div>
+		
+		<!-- JS -->
+		<script type="text/javascript" src="/controleQualidade/resources/jQuery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-animate.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-route.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-touch.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/ng-table.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>
+		
+		<!-- Main -->
+		<script type="text/javascript" src="/controleQualidade/resources/app/main.js"></script>
+		
+		<!-- Service -->
+		<script type="text/javascript" src="/controleQualidade/resources/app/service/login-service.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/app/service/usuario-service.js"></script>
+		
+		<!-- Controller -->
+		<script type="text/javascript" src="/controleQualidade/resources/app/controller/menu-controller.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/app/controller/login-controller.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/app/controller/usuario-controller.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/app/controller/analise-controller.js"></script>
+		
+	</body>
+
+</html>

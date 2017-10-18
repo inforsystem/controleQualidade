@@ -1,0 +1,48 @@
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<h3 class="col-md-8">Sistema - Controle de Qualidade</h3>
+	<div class="col-md-2"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<hr class="col-md-8">
+	<div class="col-md-2"></div>
+</div>
+
+<div class="row">
+	
+	<div class="col-md-2"></div>
+	
+	<form ng-submit="send();" name="formulario" class="col-md-8" ng-class='{"has-error": alert.msg}'>
+		<div class="form-group">
+		    <label for="username">Usuário</label>
+		    <input type="text" class="form-control" id="username" placeholder="Matrícula" autocomplete="off" 
+		    	ng-model="login.username" autofocus="autofocus" required="required">
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="password">Senha</label>
+	    	<input type="password" class="form-control" id="password" placeholder="Password" 
+	    		ng-model="login.password" required="required">
+ 	 	</div>
+	  
+		<button type="submit" class="btn btn-primary pull-right" ng-disabled="formulario.$invalid">
+		  	<span class="glyphicon glyphicon-log-in"></span>
+	  		Entrar
+	  	</button>
+  	
+	</form>
+	
+	<div class="col-md-2"></div>
+</div>
+	
+<div class="row top-10">
+	<div class="col-md-2"></div>
+	<div class="col-md-8" uib-alert ng-model="alert" ng-class="'alert-' + (alert.type || 'warning')" ng-show="alert.msg" close="closeAlert();">{{alert.msg}}</div>
+	<div class="col-md-2"></div>
+</div>
+	

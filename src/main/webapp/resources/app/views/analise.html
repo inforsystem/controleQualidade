@@ -1,0 +1,178 @@
+<head>
+	<meta charset="ISO-8859-1">
+</head>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">Análise</div>
+	<div class="panel-body">
+		<form name="formulario">
+			<div class="row">
+				<div class="col-md-1">
+					<label for="mes">Mês</label>
+				</div>
+				<div class="col-md-2">
+					<input type="number" class="form-control" id="mes" placeholder="Mês" 
+						ng-model="analise.mes" required="required"> 
+				</div>
+				<div class="col-md-1">
+					<label for="ano">Ano</label>
+				</div>
+		 		<div class="col-md-2">
+					<input type="number" class="form-control" id="ano" placeholder="Ano" 
+						ng-model="analise.ano" required="required"> 		
+		 		</div>	
+		 		<div class="col-md-2">
+					<label for="ano">Analista de Qualidade</label>
+				</div>
+		 		<div class="col-md-4">
+					<select class="form-control">
+					  <option>Marcus</option>
+					  <option>Kleber</option>
+					  <option>Marcelo</option>
+					</select>		
+		 		</div>	
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-1">
+					<label for="email">Data da Análise</label>
+				</div>
+				<div class="col-md-2">
+					<p class="input-group">
+				        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="analise.dataAnalise" is-open="analise.dataAnalise.opened" 
+				        	datepicker-options="options" ng-required="true" alt-input-formats="altInputFormats" 
+				        	close-text="Fechar" clear-text="Limpar" current-text="Hoje" />
+				        <span class="input-group-btn">
+				       		<button type="button" class="btn btn-default" ng-click="openDatePopup();"><i class="glyphicon glyphicon-calendar"></i></button>
+				        </span>
+				    </p>
+				</div>
+				
+				<div class="col-md-1">
+					<label for="motivo">Motivo do CQ</label>
+				</div>
+				<div class="col-md-8">
+					<input type="text" id="motivo" class="form-control" placeholder="Motivo da CQ"
+						ng-model="analise.motivo">
+				</div>
+			</div>
+			
+			<hr>
+			
+			<div class="row top-10">
+				<div class="col-md-2">
+					<label for="motivo">Requisição de compra</label>
+				</div>
+				<div class="col-md-4">
+					<input type="text" id="motivo" class="form-control" placeholder="Motivo da CQ"
+						ng-model="analise.motivo">
+				</div>
+				<div class="col-md-2">
+					<label for="analistaCompras">Analista de compras</label>
+				</div>
+				<div class="col-md-4">
+					<select class="form-control" id="analistaCompras">
+					  <option>Marcus</option>
+					  <option>Kleber</option>
+					  <option>Marcelo</option>
+					</select>	
+				</div>
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-2">
+					<label for="equipe">Equipe</label>
+				</div>
+				<div class="col-md-4">
+					<select class="form-control" id="equipe">
+					  <option>Equipe 1</option>
+					  <option>Equipe 2</option>
+					  <option>Equipe 3</option>
+					</select>	
+				</div>
+				<div class="col-md-2">
+					<label for="produto">Produto</label>
+				</div>
+				<div class="col-md-4">
+					<input type="text" id="produto" class="form-control" placeholder="Produto"
+						ng-model="analise.produto">
+				</div>
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-2">
+					<label for="dataSolicitacao">Data da solicitação</label>
+				</div>
+				<div class="col-md-4">
+					<p class="input-group">
+				        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="analise.dataSolicitacao" is-open="analise.dataSolicitacao.opened" 
+				        	datepicker-options="options" ng-required="true" alt-input-formats="altInputFormats" id="dataSolicitacao"
+				        	close-text="Fechar" clear-text="Limpar" current-text="Hoje" />
+				        <span class="input-group-btn">
+				       		<button type="button" class="btn btn-default" ng-click="openDateSolicitacaoPopup();"><i class="glyphicon glyphicon-calendar"></i></button>
+				        </span>
+				    </p>
+				</div>
+				<div class="col-md-2">
+					<label for="localProcesso">Local do processo</label>
+				</div>
+				<div class="col-md-4">
+					<select class="form-control" id="localProcesso">
+					  <option>SP</option>
+					  <option>SC</option>
+					  <option>RS</option>
+					</select>	
+				</div>
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-2">
+					<label for="demanda">Demanda</label>
+				</div>
+				<div class="col-md-4">
+					<input type="text" id="demanda" class="form-control" placeholder="Demanda"
+						ng-model="analise.demanda">
+				</div>
+				<div class="col-md-2">
+					<label for="processo">Processo</label>
+				</div>
+				<div class="col-md-4">
+					<select class="form-control" id="processo">
+					  <option>Convencional</option>
+					  <option>Saúde</option>
+					  <option>Cadastro</option>
+					</select>	
+				</div>
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-2">
+					<label for="processo">Ativo</label>
+				</div>
+				<div class="col-md-10">
+					<div class="glyphicon glyphicon-ok text-success" ng-show="true">
+						<label>Ativo</label>
+					</div>
+					<span class="glyphicon glyphicon-remove text-danger" ng-show="false">
+						<label>Inativo</label>
+					</span>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn btn-primary pull-right top-20" ng-disabled="formulario.$invalid">
+			  	<span class="glyphicon glyphicon-floppy-disk"></span>
+		  		Salvar
+	  		</button>
+	  		
+		</form>
+		
+		<div class="row top-10">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" uib-alert ng-model="alert" ng-class="'alert-' + (alert.type || 'warning')" ng-show="alert.msg" close="closeAlert();">{{alert.msg}}</div>
+			<div class="col-md-2"></div>
+		</div>
+		
+	</div>
+</div>
+
+

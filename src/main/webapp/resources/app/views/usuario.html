@@ -1,0 +1,103 @@
+<head>
+	<meta charset="ISO-8859-1">
+</head>
+
+
+<div class="panel panel-primary">
+	<div class="panel-heading">Cadastro de Usuário</div>
+	<div class="panel-body">
+		<form>
+			<div class="row">
+				<div class="col-md-1">
+					<label for="nome">Nome</label>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="nome" ng-model="usuario.nome"
+						placeholder="Nome">
+				</div>
+				<div class="col-md-1">
+					<label for="matricula">Matrícula</label>
+				</div>
+		 		<div class="col-md-4">
+					<input type="number" class="form-control" id="matricula" placeholder="Matrícula" 
+						ng-model="usuario.matricula" required="required"> 		
+		 		</div>	
+		 		
+		 		<div class="col-md-1">
+		 			<label for="ativo">Ativo</label>
+		 		</div>
+		 		<div class="col-md-1">
+		 			<input type="checkbox" id="ativo" ng-model="usuario.ativo">
+		 		</div>
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-1">
+					<label for="email">E-mail</label>
+				</div>
+				<div class="col-md-4">
+					<input type="email" id="email" class="form-control" placeholder="exemplo@exemplo.com"
+						ng-model="usuario.email">
+				</div>
+				<div class="col-md-1">
+					<label for="meta">Meta</label>
+				</div>
+				<div class="col-md-4">
+					<input type="text" id="meta" class="form-control" placeholder="Meta"
+						ng-model="usuario.meta">
+				</div>
+			</div>
+			
+			<div class="row top-10">
+				<div class="col-md-1">
+					<label for="perfil">Perfil</label>
+				</div>
+				<div class="col-md-4" id="perfil">
+					<select class="form-control">
+					  <option>Analista de Qualidade</option>
+					  <option>Analista de Compras</option>
+					  <option>Administrador</option>
+					</select>
+				</div>
+				<div class="col-md-1">
+					<label for="equipe">Equipe</label>
+				</div>
+				<div class="col-md-4">
+					<select class="form-control" id="equipe">
+					  <option>Equipe A</option>
+					  <option>Equipe B</option>
+					  <option>Equipe C</option>
+					</select>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn btn-primary pull-right top-20">
+			  	<span class="glyphicon glyphicon-floppy-disk"></span>
+		  		Salvar
+	  		</button>
+	  		
+		</form>
+		
+		<div class="m">
+			<table ng-table="tableParams" class="table" show-filter="true">
+			    <tr ng-repeat="user in $data">
+			        <td title="'nome'" filter="{ nome: 'text'}" sortable="'nome'">
+			            {{user.nome}}
+			        </td>
+			        <td title="'id'" filter="{ id: 'number'}" sortable="'id'">
+			            {{user.id}}
+			        </td>
+			    </tr>
+			</table>
+		</div>
+		
+		<div class="row top-10">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" uib-alert ng-model="alert" ng-class="'alert-' + (alert.type || 'warning')" ng-show="alert.msg" close="closeAlert();">{{alert.msg}}</div>
+			<div class="col-md-2"></div>
+		</div>
+		
+	</div>
+</div>
+
+
