@@ -16,6 +16,9 @@ public class ConfigService extends Application {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         classes.add(LoginService.class);
         classes.add(UsuarioService.class);
+        classes.add(AnaliseService.class);
+        classes.add(EquipeService.class);
+        classes.add(TipoProcessoService.class);
         return classes;
     }
  

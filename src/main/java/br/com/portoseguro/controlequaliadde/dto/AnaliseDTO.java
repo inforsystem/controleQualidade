@@ -1,85 +1,28 @@
-package br.com.portoseguro.controlequalidade.entity;
+package br.com.portoseguro.controlequaliadde.dto;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import br.com.portoseguro.controlequalidade.entity.Analise;
 
-@Entity
-@Table(name="analise")
-public class Analise implements Serializable {
+public class AnaliseDTO implements DataTranferObject<Analise, AnaliseDTO> {
 
-	private static final long serialVersionUID = -1022140017702775446L;
-	
-	@Id
-	@Column(name="id_analise")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private static final long serialVersionUID = -6617263430312377259L;
+
 	private Long id;
-	
-	@Column(name="mes_referencia")
 	private Integer mesReferencia;
-	
-	@Column(name="ano_referencia")
 	private Integer anoReferencia;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="data_analise")
 	private Date dataAnalise;
-	
-	@Column(name="motivocq")
 	private String motivoCQ;
-	
-	@Column(name="requisicao_compra")
 	private String requisicaoCompra;
-	
-	@Column(name="pedido")
-	private String pedido; // TODO verificar
-	
-	@Column(name="desc_produto")
+	private String pedido;
 	private String descricaoProduto;
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name="data_solicitacao")
 	private Date dataSolicitacao;
-	
-	@Column(name="local_processo")
 	private String localProcesso;
-	
-	@Column(name="numero_demanda")
-	private String numeroDemanda;  
-	
-	@Column(name="status_analise")
+	private String numeroDemanda;
 	private Boolean ativo;
-	
-	@Column(name="obs_analise")
 	private String observacaoAnalise;
-	
-	@OneToOne
-	@JoinColumn(name="id_processo")
-	private TipoProcesso tipoProcesso;
-	
-	@OneToOne
-	@JoinColumn(name="id_equipe")
-	private Equipe equipe;
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
-	@JoinTable(name="analise_usuario", joinColumns=
-		{@JoinColumn(name="id_analise")}, inverseJoinColumns={@JoinColumn(name="id_usuario")}) 	
-	private List<Usuario> usuarios;
+	private Long tipoProcesso;
+	private Long equipe;
 
 	public Long getId() {
 		return id;
@@ -185,38 +128,63 @@ public class Analise implements Serializable {
 		this.observacaoAnalise = observacaoAnalise;
 	}
 
-	public TipoProcesso getTipoProcesso() {
+	public Long getTipoProcesso() {
 		return tipoProcesso;
 	}
 
-	public void setTipoProcesso(TipoProcesso tipoProcesso) {
+	public void setTipoProcesso(Long tipoProcesso) {
 		this.tipoProcesso = tipoProcesso;
 	}
 
-	public Equipe getEquipe() {
+	public Long getEquipe() {
 		return equipe;
 	}
 
-	public void setEquipe(Equipe equipe) {
+	public void setEquipe(Long equipe) {
 		this.equipe = equipe;
 	}
 
 	@Override
 	public String toString() {
-		return "Analise [id=" + id + ", mesReferencia=" + mesReferencia + ", anoReferencia=" + anoReferencia
+		return "AnaliseDTO [id=" + id + ", mesReferencia=" + mesReferencia + ", anoReferencia=" + anoReferencia
 				+ ", dataAnalise=" + dataAnalise + ", motivoCQ=" + motivoCQ + ", requisicaoCompra=" + requisicaoCompra
 				+ ", pedido=" + pedido + ", descricaoProduto=" + descricaoProduto + ", dataSolicitacao="
 				+ dataSolicitacao + ", localProcesso=" + localProcesso + ", numeroDemanda=" + numeroDemanda + ", ativo="
 				+ ativo + ", observacaoAnalise=" + observacaoAnalise + ", tipoProcesso=" + tipoProcesso + ", equipe="
 				+ equipe + "]";
 	}
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	
+	@Override
+	public Analise convertoToEntity() {
+		Analise analise = new Analise();
+		analise.setAnoReferencia(this.getAnoReferencia());
+		analise.setAtivo(this.getAtivo());
+		analise.setDataAnalise(this.getDataAnalise());
+		analise.setDataSolicitacao(this.getDataSolicitacao());
+		analise.setDescricaoProduto(this.getDescricaoProduto());
+		
+		
+		analise.setId(this.getId());
+		analise.setLocalProcesso(this.getLocalProcesso());
+		analise.setMesReferencia(this.getMesReferencia());
+		analise.setMotivoCQ(this.getMotivoCQ());
+		analise.setNumeroDemanda(this.getNumeroDemanda());
+		analise.setObservacaoAnalise(this.getObservacaoAnalise());
+		analise.setPedido(this.getPedido());
+		analise.setRequisicaoCompra(this.getRequisicaoCompra());
+		
+		
+		return analise;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	@Override
+	public AnaliseDTO consumeEntity(Analise entity) {
+		this.setAnoReferencia(entity.getAnoReferencia());
+		this.setAtivo(this.getAtivo());
+		this.setDataAnalise(entity.getDataAnalise());
+		this.setDataSolicitacao(entity.getDataSolicitacao());
+		this.setDescricaoProduto(entity.getDescricaoProduto());
+		return null;
 	}
 
 }

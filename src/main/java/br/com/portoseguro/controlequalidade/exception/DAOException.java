@@ -1,5 +1,8 @@
 package br.com.portoseguro.controlequalidade.exception;
 
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback=true)
 public class DAOException extends Exception {
 
 	private static final long serialVersionUID = 31470021604931653L;

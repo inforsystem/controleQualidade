@@ -17,5 +17,9 @@ app.service("usuarioService", function($http) {
 	this.alterar = function(obj){
 		return $http.put(PATH_REST + "usuario/", obj);
 	}
+	
+	this.buscarPorPerfil = function(idPerfil){
+		return $http.get(PATH_REST + "usuario/buscar/perfil/" + idPerfil);
+	}
 		
 });

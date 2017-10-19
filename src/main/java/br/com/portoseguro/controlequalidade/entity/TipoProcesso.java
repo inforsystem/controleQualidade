@@ -1,15 +1,12 @@
 package br.com.portoseguro.controlequalidade.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,12 +23,6 @@ public class TipoProcesso implements Serializable {
 	@Column(name="desc_processo")
 	private String descricao;
 	
-	@OneToOne(mappedBy="tipoProcesso")
-	private Analise analise;
-	
-	@ManyToMany(mappedBy="tiposProcesso")
-	private List<TipoCompra> tiposCompra;
-
 	public Long getId() {
 		return id;
 	}
@@ -48,25 +39,9 @@ public class TipoProcesso implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Analise getAnalise() {
-		return analise;
-	}
-
-	public void setAnalise(Analise analise) {
-		this.analise = analise;
-	}
-
 	@Override
 	public String toString() {
-		return "TipoProcesso [id=" + id + ", descricao=" + descricao + ", analise=" + analise + "]";
+		return "TipoProcesso [id=" + id + ", descricao=" + descricao + "]";
 	}
 
-	public List<TipoCompra> getTiposCompra() {
-		return tiposCompra;
-	}
-
-	public void setTiposCompra(List<TipoCompra> tiposCompra) {
-		this.tiposCompra = tiposCompra;
-	}
-	
 }

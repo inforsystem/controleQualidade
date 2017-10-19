@@ -5,26 +5,26 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">Análise</div>
 	<div class="panel-body">
-		<form name="formulario">
+		<form name="formulario" ng-submit="salvar();">
 			<div class="row">
 				<div class="col-md-1">
 					<label for="mes">Mês</label>
 				</div>
 				<div class="col-md-2">
 					<input type="number" class="form-control" id="mes" placeholder="Mês" 
-						ng-model="analise.mes" required="required"> 
+						ng-model="analise.mesReferencia" required="required" min="1" max="12"> 
 				</div>
 				<div class="col-md-1">
 					<label for="ano">Ano</label>
 				</div>
 		 		<div class="col-md-2">
 					<input type="number" class="form-control" id="ano" placeholder="Ano" 
-						ng-model="analise.ano" required="required"> 		
+						ng-model="analise.anoReferencia" required="required" min="1970"> 		
 		 		</div>	
 		 		<div class="col-md-2">
 					<label for="ano">Analista de Qualidade</label>
 				</div>
-		 		<div class="col-md-4">
+		 		<div class="col-md-4"> 														<!-- Analista ??? -->
 					<select class="form-control">
 					  <option>Marcus</option>
 					  <option>Kleber</option>
@@ -53,7 +53,7 @@
 				</div>
 				<div class="col-md-8">
 					<input type="text" id="motivo" class="form-control" placeholder="Motivo da CQ"
-						ng-model="analise.motivo">
+						ng-model="analise.motivoCQ" required="required">
 				</div>
 			</div>
 			
@@ -64,14 +64,14 @@
 					<label for="motivo">Requisição de compra</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" id="motivo" class="form-control" placeholder="Motivo da CQ"
-						ng-model="analise.motivo">
+					<input type="text" id="motivo" class="form-control" placeholder="Requisição"
+						ng-model="analise.requisicaoCompra" required="required">
 				</div>
 				<div class="col-md-2">
-					<label for="analistaCompras">Analista de compras</label>
+					<label for="analistaCompras">Analista de compras</label> 
 				</div>
 				<div class="col-md-4">
-					<select class="form-control" id="analistaCompras">
+					<select class="form-control" id="analistaCompras">							<!-- Analista ??? -->
 					  <option>Marcus</option>
 					  <option>Kleber</option>
 					  <option>Marcelo</option>
@@ -84,10 +84,9 @@
 					<label for="equipe">Equipe</label>
 				</div>
 				<div class="col-md-4">
-					<select class="form-control" id="equipe">
-					  <option>Equipe 1</option>
-					  <option>Equipe 2</option>
-					  <option>Equipe 3</option>
+					<select class="form-control" id="equipe" ng-model="analise.equipe">
+						<option value="">Selecione</option>
+					  	<option ng-repeat="e in equipes" value="{{e.id}}">{{e.descricao}}</option>
 					</select>	
 				</div>
 				<div class="col-md-2">
@@ -95,7 +94,7 @@
 				</div>
 				<div class="col-md-4">
 					<input type="text" id="produto" class="form-control" placeholder="Produto"
-						ng-model="analise.produto">
+						ng-model="analise.descricaoProduto">
 				</div>
 			</div>
 			
@@ -117,10 +116,10 @@
 					<label for="localProcesso">Local do processo</label>
 				</div>
 				<div class="col-md-4">
-					<select class="form-control" id="localProcesso">
-					  <option>SP</option>
-					  <option>SC</option>
-					  <option>RS</option>
+					<select class="form-control" id="localProcesso" ng-model="analise.localProcesso">
+					  <option value="">Selecione</option>
+					  <option value="Ariba">Ariba</option>
+					  <option value="Pasta">Pasta</option>
 					</select>	
 				</div>
 			</div>
@@ -131,16 +130,15 @@
 				</div>
 				<div class="col-md-4">
 					<input type="text" id="demanda" class="form-control" placeholder="Demanda"
-						ng-model="analise.demanda">
+						ng-model="analise.numeroDemanda">
 				</div>
 				<div class="col-md-2">
-					<label for="processo">Processo</label>
+					<label for="processo">Tipo Processo</label>
 				</div>
 				<div class="col-md-4">
-					<select class="form-control" id="processo">
-					  <option>Convencional</option>
-					  <option>Saúde</option>
-					  <option>Cadastro</option>
+					<select class="form-control" id="processo" ng-model="analise.tipoProcesso">
+						<option value="">Selecione</option>
+						<option ng-repeat="proc in tiposProcessos" value="{{proc.id}}">{{proc.descricao}}</option>
 					</select>	
 				</div>
 			</div>
@@ -150,10 +148,10 @@
 					<label for="processo">Ativo</label>
 				</div>
 				<div class="col-md-10">
-					<div class="glyphicon glyphicon-ok text-success" ng-show="true">
+					<div class="glyphicon glyphicon-ok text-success" ng-show="analise.ativo">
 						<label>Ativo</label>
 					</div>
-					<span class="glyphicon glyphicon-remove text-danger" ng-show="false">
+					<span class="glyphicon glyphicon-remove text-danger" ng-show="!analise.ativo">
 						<label>Inativo</label>
 					</span>
 				</div>
