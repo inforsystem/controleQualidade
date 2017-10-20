@@ -2,13 +2,16 @@ angular.module("controleQualidade").controller("analiseController", ["$scope", "
 
 	$rootScope.currentPath = $location.path();
 	
+	var hasId = $routeParams.id;
+	
 	$scope.analise = {};
 	$scope.analise.ativo = true;
 	$scope.alert = {};
 	
-	
 	$scope.equipes = [];
+	$scope.equipeSelecionada = {};
 	$scope.tiposProcessos = [];
+	$scope.tipoProcessoSelecionado = {};
 	$scope.analistasQualidade = [];
 	$scope.analistasCompra = [];
 	
@@ -24,24 +27,17 @@ angular.module("controleQualidade").controller("analiseController", ["$scope", "
 		$scope.alert = {type: "warning", msg: "Falha ao buscar processos!"};
 	});
 	
-//	usuarioService.buscarPorPerfil(1).then(function(response){
-//		$scope.analistasQualidade = response.data; 
-//	}, function(error){
-//		$scope.alert = {type: "warning", msg: "Falha ao buscar analistas de qualidade!"};
-//	});
-//	
-//	usuarioService.buscarPorPerfil(2).then(function(response){
-//		$scope.analistasCompra = response.data; 
-//	}, function(error){
-//		$scope.alert = {type: "warning", msg: "Falha ao buscar analistas de compra!"};
-//	});
-	
 	$scope.salvar = function(){
-		analiseService.salvar($scope.analise).then(function(response){
-			$scope.alert = {type: "success", msg: "Análise salva!"};
-		}, function(error){
-			$scope.alert = {type: "warning", msg: "Falha ao salvar análise."};
-		});
+		// se tiver um 'id' na URL altera. Se não, salva um novo. 
+		if(hasId){
+			
+		}else{
+			analiseService.salvar($scope.analise).then(function(response){
+				$scope.alert = {type: "success", msg: "Análise salva!"};
+			}, function(error){
+				$scope.alert = {type: "warning", msg: "Falha ao salvar análise."};
+			});
+		}
 	}
 	
 	/* componente calendar */
@@ -50,7 +46,9 @@ angular.module("controleQualidade").controller("analiseController", ["$scope", "
 		$scope.analise.dataSolicitacao = new Date();
 	};
 	
-	$scope.newDate();
+	if(!hasId){
+		$scope.newDate();
+	}
 	
 	$scope.options = {
 		showWeeks: true
@@ -72,6 +70,23 @@ angular.module("controleQualidade").controller("analiseController", ["$scope", "
 	
 	$scope.format = 'dd/MM/yyyy';
 	/* componente calendar */
+	
+	
+	// se tiver um 'id' na URL, busca e declara a análise
+	if(hasId){
+		analiseService.buscarPorId(hasId).then(function(response){
+			$scope.analise = response.data;
+			$scope.analise.dataAnalise.opened = false;
+			$scope.equipeSelecionada = $scope.analise.equipe;
+			$scope.tipoProcessoSelecionado = $scope.analise.tipoProcesso;
+			
+			$scope.analise.dataAnalise = new Date($scope.analise.dataAnalise.toString().concat('T00:00:00'));
+			$scope.analise.dataSolicitacao = new Date($scope.analise.dataSolicitacao.toString().concat('T00:00:00'));
+			
+		}, function(error){
+			$scope.alert = {type: "warning", msg: "Falha ao buscar analise por id!"};
+		});
+	}
 	
 	
 }]);

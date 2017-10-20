@@ -86,7 +86,7 @@
 				<div class="col-md-4">
 					<select class="form-control" id="equipe" ng-model="analise.equipe">
 						<option value="">Selecione</option>
-					  	<option ng-repeat="e in equipes" value="{{e.id}}">{{e.descricao}}</option>
+					  	<option ng-selected="equipeSelecionada.id == e.id" ng-repeat="e in equipes" value="{{e.id}}">{{e.descricao}}</option>
 					</select>	
 				</div>
 				<div class="col-md-2">
@@ -138,7 +138,7 @@
 				<div class="col-md-4">
 					<select class="form-control" id="processo" ng-model="analise.tipoProcesso">
 						<option value="">Selecione</option>
-						<option ng-repeat="proc in tiposProcessos" value="{{proc.id}}">{{proc.descricao}}</option>
+						<option ng-selected="tipoProcessoSelecionado.id == proc.id" ng-repeat="proc in tiposProcessos" value="{{proc.id}}">{{proc.descricao}}</option>
 					</select>	
 				</div>
 			</div>

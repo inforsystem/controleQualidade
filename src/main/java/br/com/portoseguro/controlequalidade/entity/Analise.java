@@ -1,6 +1,7 @@
 package br.com.portoseguro.controlequalidade.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,10 +77,10 @@ public class Analise implements Serializable {
 	@JoinColumn(name="id_equipe")
 	private Equipe equipe;
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	@JoinTable(name="analise_usuario", joinColumns=
 		{@JoinColumn(name="id_analise")}, inverseJoinColumns={@JoinColumn(name="id_usuario")}) 	
-	private List<Usuario> usuarios;
+	private List<Usuario> usuarios = new ArrayList<>();
 
 	public Long getId() {
 		return id;

@@ -2,7 +2,7 @@ const PATH_VIEWS = "/controleQualidade/resources/app/views/";
 const PATH_REST = "/controleQualidade/rest/";
 const CQCA = "controle-qualidade-chave:auth";
 
-angular.module("controleQualidade", ["ngRoute", "ui.bootstrap", "ngAnimate", "ngTable", "services"]).
+angular.module("controleQualidade", ["ngRoute", "ui.bootstrap", "ngAnimate", "ngTable", "services", "chart.js"]).
 	config(function($routeProvider, $locationProvider){
 	
 	$routeProvider.when("/controleQualidade", {
@@ -20,9 +20,14 @@ angular.module("controleQualidade", ["ngRoute", "ui.bootstrap", "ngAnimate", "ng
 		controller : "analiseController"
 	});
 	
-	$routeProvider.when("/controleQualidade/cadastro/:id", {
-		templateUrl : PATH_VIEWS + "login.html",
-		controller : "loginController"
+	$routeProvider.when("/controleQualidade/analise/:id", {
+		templateUrl : PATH_VIEWS + "analise.html",
+		controller : "analiseController"
+	});
+	
+	$routeProvider.when("/controleQualidade/grafico", {
+		templateUrl : PATH_VIEWS + "grafico.html",
+		controller : "graficoController"
 	});
 	
 	$routeProvider.otherwise( {redirectTo:"/controleQualidade"} );

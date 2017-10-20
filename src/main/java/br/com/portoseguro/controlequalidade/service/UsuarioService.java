@@ -6,7 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -34,20 +33,5 @@ public class UsuarioService {
 		}
 		return Response.ok(usuarios).build();
 	}
-	
-	@GET
-	@Path("buscar/perfil/{perfil}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarPorPerfil(@PathParam("perfil") Long idPerfil) {
-		List<Usuario> usuarios = null;
-		try {
-			usuarios = this.usuarioDAO.buscarPorPerfil(idPerfil);
-		}catch(DAOException ex) {
-			ex.printStackTrace();
-			return Response.serverError().entity(ex.getMessage()).build();
-		}
-		return Response.ok(usuarios).build();
-	}
-	
 	
 }

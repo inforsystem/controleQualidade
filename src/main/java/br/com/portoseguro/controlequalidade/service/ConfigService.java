@@ -19,6 +19,7 @@ public class ConfigService extends Application {
         classes.add(AnaliseService.class);
         classes.add(EquipeService.class);
         classes.add(TipoProcessoService.class);
+        classes.add(GraficoService.class);
         return classes;
     }
  

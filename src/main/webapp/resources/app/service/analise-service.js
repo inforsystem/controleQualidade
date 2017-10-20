@@ -11,4 +11,8 @@ app.service("analiseService", function($http) {
 		return $http.put(PATH_REST + "analise/", obj);
 	}
 	
+	this.buscarPorId = function(id){
+		return $http.get(PATH_REST + "analise/" + id);
+	}
+	
 });

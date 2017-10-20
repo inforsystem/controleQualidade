@@ -65,6 +65,10 @@
 			        	<a href="/controleQualidade/#!/controleQualidade/lista">Relatorio</a>
 			       	</li>
 			       	
+			       	 <li ng-class="{active: currentPath === '/controleQualidade/grafico'}">
+			        	<a href="/controleQualidade/#!/controleQualidade/grafico">Gráfico</a>
+			       	</li>
+			       	
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        <li ng-controller="menuController">
@@ -89,6 +93,8 @@
 		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-animate.min.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-route.min.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-touch.min.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/chart/Chart.bundle.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/angular/angular-chart.min.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/angular/ng-table.min.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>
 		
@@ -101,12 +107,14 @@
 		<script type="text/javascript" src="/controleQualidade/resources/app/service/equipe-service.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/app/service/analise-service.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/app/service/processo-service.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/app/service/grafico-service.js"></script>
 		
 		<!-- Controller -->
 		<script type="text/javascript" src="/controleQualidade/resources/app/controller/menu-controller.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/app/controller/login-controller.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/app/controller/usuario-controller.js"></script>
 		<script type="text/javascript" src="/controleQualidade/resources/app/controller/analise-controller.js"></script>
+		<script type="text/javascript" src="/controleQualidade/resources/app/controller/grafico-controller.js"></script>
 		
 	</body>
 

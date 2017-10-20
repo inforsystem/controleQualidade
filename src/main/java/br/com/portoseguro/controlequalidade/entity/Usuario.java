@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,15 +16,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="cadastrar_usuario")
-@NamedQueries(
-	@NamedQuery(name=Usuario.BUSCAR_POR_PERFIL, query="SELECT u FROM Usuario u WHERE u.perfil.id = :idPerfil")
-)
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = -942886349355324666L;
 	
-	public static final String BUSCAR_POR_PERFIL = "Usuario.buscarPorPerfil";
-
 	@Id
 	@Column(name="id_usuario")
 	private Long id;
@@ -51,11 +44,11 @@ public class Usuario implements Serializable {
 	@Column(name="meta_usuario")
 	private Integer meta;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_equipe")
 	private Equipe equipe;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_perfil")
 	private Perfil perfil;
 	
